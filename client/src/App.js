@@ -6,10 +6,14 @@ import Login from './pages/Login'
 import Layout from './components/Layout'
 import Register from './pages/Register'
 import "./App.css"
+import axios from "axios"
+
+axios.defaults.baseURL="http://localhost:4000"
 
 function App() {
 
   return (
+    <>
    <Routes>
     <Route path='/' element={<Layout/>}>
 
@@ -19,6 +23,7 @@ function App() {
     </Route>
     <Route path='*' element={<Fallback/>}/>
    </Routes>
+    </>
   )
 }
 
