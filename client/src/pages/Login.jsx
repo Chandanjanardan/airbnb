@@ -1,7 +1,10 @@
-import React,{useState} from 'react'
-import {Link} from 'react-router-dom'
+import React,{useContext, useState} from 'react'
+import {Link,useNavigate} from 'react-router-dom'
+import { UserContext } from '../UserContext'
 
 function Login() {
+  const {user,setUser}=useContext(UserContext)
+  const navigate=useNavigate()
   const [email,setEmail]=useState("")
   const [password, setPassword] = useState("")
  async function handleSubmit(e){
@@ -12,11 +15,16 @@ function Login() {
          headers:{"Content-Type":"application/json"},
          body:JSON.stringify({
            email,password
-         })
-        }
-        )
+         }),
+         credentials:"include"
+        })
+      //  let data= await response.json()
+      //  console.log(data)
         if(response.status===200){
           alert("Login succesfull")
+          let data=await response.json()
+         setUser(data.name)
+          navigate("/")
         }else{
           alert("Wrong creadentials")
         }
@@ -27,6 +35,7 @@ function Login() {
     }
 
   }
+
    
  
   return (

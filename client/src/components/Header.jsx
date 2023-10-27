@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../UserContext'
 
 function Header() {
+  const {user}=useContext(UserContext)
+  console.log(user,"header page")
   return (
     <div>
     <header className=' flex justify-between'>
-      <a href='' className='flex items-center gap-1'>
+      <Link to='/' className='flex items-center gap-1'>
         <img className="w-20 h-10 "src='https://cdn.worldvectorlogo.com/logos/airbnb-logo-belo-1.svg'/>
-      </a>
+      </Link>
       <div className='flex border border-gray-300 rounded-full py-2 px-4 gap-2 shadow-md showdow-gray-300'>
         <div>Anywere</div>
         <div className='border border-l border-gray-300'>
@@ -34,6 +37,10 @@ function Header() {
 </svg>
 
 </div>
+{user && (
+  <div>{
+    user}</div>
+)}
 
 </Link>
     </header>

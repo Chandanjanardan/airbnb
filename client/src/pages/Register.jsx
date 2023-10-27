@@ -16,9 +16,10 @@ function Register() {
               email
               ,password
           });
-          console.log(resposne)
+         console.log(resposne)
+         
           alert("Registration successfull")
-          navigate("/login")
+          // navigate("/login")
 
         } catch (error) {
           alert("Registraion failed . Please try again later")
