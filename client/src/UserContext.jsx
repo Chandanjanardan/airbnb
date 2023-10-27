@@ -16,6 +16,7 @@ export function UserContextProvider({children}){
                     credentials:"include"
                 })
                 let data= await response.json()
+                console.log(data.name,"from context")
                setUser(data)
             }
             getProfile()
