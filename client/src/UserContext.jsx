@@ -5,6 +5,7 @@ import axios from "axios"
 export const UserContext=createContext({})
 export function UserContextProvider({children}){
     const [user,setUser]=useState("")
+    const [ready,setReady]=useState(false)
     useEffect(()=>{
         if(!user){
             // axios.get("/profile")
@@ -18,13 +19,14 @@ export function UserContextProvider({children}){
                 let data= await response.json()
                 console.log(data.name,"from context")
                setUser(data)
+              setReady(true)
             }
             getProfile()
         }
         
         },[])
     return (
-        <UserContext.Provider value={{user,setUser}}>
+        <UserContext.Provider value={{user,setUser,ready}}>
         {children}
         </UserContext.Provider>
        

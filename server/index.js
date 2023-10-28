@@ -57,7 +57,7 @@ app.post("/login",async(req,res)=>{
            return res.status(202).json("Wrong credentials")
         }
     }else{
-        return res.status(404).json("nothing")
+        return res.status(404).json("please register your serlf")
     }
     
 })
@@ -73,10 +73,18 @@ app.get("/profile",(req,res)=>{
             if(error) throw error
           return  res.json(user)
         })
-    }else{
-        res.json("sonwthing went wrong in profile")
+        if(!token){
+          return  res.json({msg:"guest user"})
+        }
     }
     
+})
+app.post("/logout",(req,res)=>{
+   const {token}=req.cookies
+   jwt.verify(token,secret,{},(err,info)=>{
+    if(err) throw err
+       res.cookie("token","").json({msg:"loggedout succesfully"})
+   })
 })
 
 

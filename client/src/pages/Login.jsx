@@ -25,6 +25,7 @@ function Login() {
           let data=await response.json()
          setUser(data.name)
           navigate("/")
+          window.location.reload(true)
         }else{
           alert("Wrong creadentials")
         }
